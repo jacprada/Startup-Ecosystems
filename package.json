@@ -1,0 +1,29 @@
+{
+  "name": "startup-ecosystems",
+  "version": "1.0.0",
+  "description": "app that ranks and displays the world's top startup hubs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacprada/Startup-Ecosystems.git"
+  },
+  "keywords": [
+    "startup",
+    "ecosystems"
+  ],
+  "author": "jacprada/compass",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacprada/Startup-Ecosystems/issues"
+  },
+  "homepage": "https://github.com/jacprada/Startup-Ecosystems#readme",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "mongoose": "^4.1.6",
+    "morgan": "^1.6.1"
+  }
+}
