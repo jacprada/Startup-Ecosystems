@@ -25,7 +25,6 @@ app.get('/hubs', function(req, res){
   });
 });
 
-
 // SHOW
 app.get('/hubs/:id', function(req,res){
   var id = req.params.id;
