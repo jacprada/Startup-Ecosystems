@@ -17,7 +17,7 @@ app.use(morgan('dev'));
 
 app.use(require('./controllers'));
 
-var Hub = require('./models/hub');
+// var Hub = require('./models/hub');
 
 
 // // INDEX 

@@ -1,9 +1,6 @@
 var express = require('express');
-var router = express.Router();
-var User = require('../models/user');
-var Hunt = require('../models/hunt');
-var Task = require('../models/task');
-var CompletedTask = require('../models/completedTask');
+var router  = express.Router();
+var User    = require('../models/user');
 
 router.get('/', function(req, res){
   User.find(function(error, users){
