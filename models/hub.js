@@ -12,7 +12,7 @@ var HubSchema = new mongoose.Schema({
   talent: Number,
   startup_experience: Number,
   growth_index: Number,
-  ecosystem value: Number,
+  ecosystem_value: Number,
   female_founders: Number,
   founder_age: Number,
   founder_with_hypergrowth_startup_experience: Number,
