@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/startup-ecosystems'
 mongoose.connect(databaseURL);
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
 
 app.use(require('./controllers'));
 
