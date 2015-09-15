@@ -1,7 +1,9 @@
 var express     = require("express");
 var app         = express();
+var fs          = require('fs');
 var bodyParser  = require("body-parser");
 var morgan      = require("morgan");
+var cheerio     = require('cheerio');
 var mongoose    = require('mongoose');
 var passport    = require('passport');
 
