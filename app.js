@@ -1,5 +1,6 @@
 var express     = require('express');
 var app         = express();
+var cors        = require('cors');
 var fs          = require('fs');
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
@@ -22,6 +23,7 @@ mongoose.connect(databaseURL);
 
 require('./config/passport')(passport);
 
+app.use(cors());
 app.use(morgan('dev'));
 
 app.use(require('./controllers'));
