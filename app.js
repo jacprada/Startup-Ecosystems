@@ -1,15 +1,15 @@
-var express     = require('express');
-var app         = express();
-var cors        = require('cors');
-var fs          = require('fs');
-var bodyParser  = require('body-parser');
-var morgan      = require('morgan');
-var request     = require('request-promise');
-var expressJWT  = require('express-jwt');
-var cheerio     = require('cheerio');
-var mongoose    = require('mongoose');
-var passport    = require('passport');
-var config      = require('./config/config');
+var express           = require('express');
+var app               = express();
+var cors              = require('cors');
+var fs                = require('fs');
+var bodyParser        = require('body-parser');
+var morgan            = require('morgan');
+var request           = require('request-promise');
+var expressJWT        = require('express-jwt');
+var cheerio           = require('cheerio');
+var mongoose          = require('mongoose');
+var passport          = require('passport');
+var config            = require('./config/config');
 
 app
   .use('/api', expressJWT({ secret: config.secret })
