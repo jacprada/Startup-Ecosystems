@@ -30,7 +30,8 @@
     "morgan": "^1.6.1",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
-    "request-promise": "^0.4.3"
+    "request-promise": "^0.4.3",
+    "satellizer": "^0.12.5"
   },
   "devDependencies": {
     "colors": "^1.1.2"
