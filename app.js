@@ -4,14 +4,15 @@ var fs          = require('fs');
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var request     = require('request-promise');
-var expressJWT  = require('')
+var expressJWT  = require('express-jwt');
 var cheerio     = require('cheerio');
 var mongoose    = require('mongoose');
 var passport    = require('passport');
+var config      = require('./config/config');
 
 app
   .use('/api', expressJWT({ secret: config.secret })
-  .unless({path: ['/api/signup', '/api/signin']}));
+  .unless({path: ['/api/auth/signup', '/api/auth/signin']}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
