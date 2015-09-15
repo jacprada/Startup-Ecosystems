@@ -1,12 +1,17 @@
-var express     = require("express");
+var express     = require('express');
 var app         = express();
 var fs          = require('fs');
-var bodyParser  = require("body-parser");
-var morgan      = require("morgan");
+var bodyParser  = require('body-parser');
+var morgan      = require('morgan');
 var request     = require('request-promise');
+var expressJWT  = require('')
 var cheerio     = require('cheerio');
 var mongoose    = require('mongoose');
 var passport    = require('passport');
+
+app
+  .use('/api', expressJWT({ secret: config.secret })
+  .unless({path: ['/api/signup', '/api/signin']}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
