@@ -39,46 +39,44 @@ var selectScrape = function(body, response){
           var $ = cheerio.load(body);
            
           $("#wrap .startup").each(function(i, el){
-            console.log("Crawling " + $(el).data("name") + "".magenta);
+            console.log("Crawling " + $(el).data("name") + "".yellow);
 
-            // Using closure to protect the value of el, company and newStartup
+            // Using closure to protect the value of el, member and newCommunityMember
             (function($, el){
-              var company = {
-                externalId: $(el).data("id"),
+              var member = {
                 name: $(el).data("name"),
-                url: $(el).data("href"),
-                bio: $(el).find(".main_link img").attr("alt"),
-                twitter: $(el).find(".main_link span").attr("href"),
-                image: $(el).find(".main_link img").attr("data-src"),
+                url: $(el).attr("href"),
+                bio: $(el).find("strong").last().text().trim(),
+                twitter: $(el).toString().match(/<!\-\-\s*.*href="(.*?)"/)[1],
+                image: $(el).find("img").attr("data-src"),
                 location: countryElement.name
               }
 
-              if (company.bio && company.image && company.twitter !== "" && company.twitter !== "null" && company.url !== "") {
-                console.log("Correct details and accessing MongoDB".magenta);
+              if (member.name && member.url && member.bio && member.twitter && member.twitter !== "null" && member.image) {
+                console.log("Correct details and accessing MongoDB".yellow);
 
-                Startup.findOne({ "url": company.url }, function(err, startup) {
+                CommunityMember.findOne({ "url": member.url }, function(err, communityMember) {
                   if (err) console.log(err);
-                  if (startup) {
-                    company._id = startup._id;
+                  if (communityMember) {
+                    member._id = communityMember._id;
                     
-                    Startup.findByIdAndUpdate(startup._id, company, {new: true}, function(err, updatedStartup){
-                      if (err) console.log(newStartup.name + " not updated.".red);
-                      console.log(updatedStartup.name + " was updated.".blue)
+                    CommunityMember.findByIdAndUpdate(communityMember._id, member, {new: true}, function(err, updatedCommunityMember){
+                      if (err) console.log(newCommunityMember.name + " not updated.".red);
+                      console.log(updatedCommunityMember.name + " was updated.".blue)
                     })
                   }
 
-                  var newStartup        = new Startup();
-                  newStartup.externalId = company.externalId;
-                  newStartup.name       = company.name;
-                  newStartup.url        = company.url;
-                  newStartup.bio        = company.bio;
-                  newStartup.twitter    = company.twitter;
-                  newStartup.image      = company.image;
-                  newStartup.location   = company.location;
+                  var newCommunityMember        = new Startup();
+                  newCommunityMember.name       = member.name;
+                  newCommunityMember.url        = member.url;
+                  newCommunityMember.bio        = member.bio;
+                  newCommunityMember.twitter    = member.twitter;
+                  newCommunityMember.image      = member.image;
+                  newCommunityMember.location   = member.location;
 
-                  newStartup.save(function(err) {
-                    if (err) console.log(newStartup.name + " NOT saved.".red);
-                    console.log(newStartup.name + " is saved.".green);
+                  newCommunityMember.save(function(err) {
+                    if (err) console.log(newCommunityMember.name + " NOT saved.".red);
+                    console.log(newCommunityMember.name + " is saved.".green);
                   });
                 });
               }
@@ -104,7 +102,7 @@ var increaseCounter = function(){
   console.log("Counter:" + counter + " vs results:" + results.countries.length);
   
   if (counter == results.countries.length) {
-    fs.writeFile('../datasets/crawlbackup.json', JSON.stringify(results, null, 4), function(err){
+    fs.writeFile('../datasets/communityBackup.json', JSON.stringify(results, null, 4), function(err){
       console.log('BOOM.');
     })
   }

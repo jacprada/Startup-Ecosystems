@@ -104,7 +104,7 @@ var increaseCounter = function(){
   console.log("Counter:" + counter + " vs results:" + results.countries.length);
   
   if (counter == results.countries.length) {
-    fs.writeFile('../datasets/crawlbackup.json', JSON.stringify(results, null, 4), function(err){
+    fs.writeFile('../datasets/startupsBackup.json', JSON.stringify(results, null, 4), function(err){
       console.log('BOOM.');
     })
   }
