@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie something</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body ng-controller="usersController as users">
+
+  <main>
+    <button ng-click="users.authenticate('twitter')">Sign in with Twitter</button>
+  </main>
+
+
+  <!-- External JS Resources --> 
+  <script src="./bower_components/angular/angular.min.js"></script>
+  <script src="./bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
+
+  <!-- Internal JS Resources --> 
+  <script src="js/app.js"></script>
+  <script type="text/javascript" src="./js/services/authInterceptor.js"></script>
+  <script type="text/javascript" src="./js/services/tokenService.js"></script>
+  <script type="text/javascript" src="./js/models/user.js"></script>
+  <script type="text/javascript" src="./js/models/movie.js"></script>
+  <script type="text/javascript" src="./js/controllers/usersController.js"></script>
+  <script type="text/javascript" src="./js/controllers/moviesController.js"></script>
+</body>
+</html>
