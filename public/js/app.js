@@ -1,13 +1,40 @@
+// angular
+//   .module('MyApp', ['satellizer'])
+//   .config(function($authProvider) {
+
+//   $authProvider.twitter({
+//     url: '/auth/twitter',
+//     authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
+//     redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
+//     type: '1.0',
+//     popupOptions: { width: 495, height: 645 }
+//   });
+
+// });
+
 angular
-  .module('MyApp', ['satellizer'])
-  .config(function($authProvider) {
+  .module('final-project', ['angular-jwt', 'ngResource', 'ui.router'])
+  .constant('API', 'http://localhost:3000/api')
+  .config(function($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
+  })
+  .config(MainRouter);
 
-  $authProvider.twitter({
-    url: '/auth/twitter',
-    authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
-    redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
-    type: '1.0',
-    popupOptions: { width: 495, height: 645 }
-  });
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider']
+  function MainRouter($stateProvider, $urlRouterProvider){
+    $stateProvider
+      .state('signup', {
+        url: "/signup",
+        templateUrl: "js/templates/signup.html"
+      })
+      .state('login', {
+        url: "/login",
+        templateUrl: "js/templates/login.html"
+      })
+      .state('homepage', {
+        templateUrl: "js/templates/homepage.html",
+        url: "/"
+      })
+      $urlRouterProvider.otherwise('/');    
+    }
 
-});

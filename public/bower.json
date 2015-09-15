@@ -1,0 +1,21 @@
+{
+  "name": "TheStartHub",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jacprada/Startup-Ecosystems",
+  "authors": [
+    "JP"
+  ],
+  "description": "TheStartHub is a data-driven app that let you discover great startups from all over the world",
+  "main": "app.js",
+  "keywords": [
+    "startup"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
