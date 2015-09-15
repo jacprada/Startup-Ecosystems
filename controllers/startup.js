@@ -23,3 +23,5 @@ router.get('/:id', function(req,res){
       return res.status(200).send(startup);
   });
 });
+
+module.exports = router

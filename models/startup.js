@@ -11,4 +11,5 @@ var StartupSchema = new mongoose.Schema({
   image: String
 });
 
-module.exports = mongoose.model("Startup", StartupSchema);
+var Startup = mongoose.model("Startup", StartupSchema);
+module.exports = Startup;
