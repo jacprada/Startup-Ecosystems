@@ -15,11 +15,11 @@ function User($resource, API) {
       'remove':    { method: 'DELETE' },
       'delete':    { method: 'DELETE' },
       'authorize': { 
-        url: url + '/authorize',
+        url: url + '/auth/signin',
         method: 'POST' 
       }, 
       'join': {
-        url: url + '/join',
+        url: url + '/auth/signup',
         method: 'POST'
       }
     }

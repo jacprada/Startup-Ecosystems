@@ -29,14 +29,14 @@ function UserController(User, TokenService, $state) {
 
   self.authorize = function() {
     User.authorize(self.user, function(res){
-      $state.go("movies");
+      $state.go("homepage");
       showMessage(res)
     });
   }
 
   self.join = function() {
     User.join(self.user, function(res){
-      $state.go("movies");
+      $state.go("homepage");
       showMessage(res)
     });
   }
