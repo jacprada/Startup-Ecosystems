@@ -20,7 +20,17 @@ router.get('/:id', function(req,res){
   Startup.findById({_id: id})
   .exec(function(error, startup){
     if(error) return res.status(404).send({message: 'Could not find startup'})
-      return res.status(200).send(startup);
+      return res.status(200).send(startup || {message: 'Sorry, no startup with that ID.'});
+  });
+});
+
+
+// DELETE
+router.delete('/:id', function(req, res){
+  var id = req.params.id;
+  Startup.remove({_id: id}, function(error) {
+    if (error) res.status(404).send({message: 'Sorry, no startup with that ID.'})
+      return res.status(200).send({message: 'Startup deleted from database.'});
   });
 });
 
