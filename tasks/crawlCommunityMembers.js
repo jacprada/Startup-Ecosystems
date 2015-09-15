@@ -3,7 +3,7 @@ var request             = require('request-promise');
 var cheerio             = require('cheerio');
 var mongoose            = require("mongoose");
 var colors              = require('colors');
-var CommunityMember     = require("../models/startup");
+var CommunityMember     = require("../models/communityMember");
 
 var results     = { countries: [] }
 var country     = { name: "", url: "" }
@@ -66,7 +66,7 @@ var selectScrape = function(body, response){
                     })
                   }
 
-                  var newCommunityMember        = new Startup();
+                  var newCommunityMember        = new CommunityMember();
                   newCommunityMember.name       = member.name;
                   newCommunityMember.url        = member.url;
                   newCommunityMember.bio        = member.bio;
