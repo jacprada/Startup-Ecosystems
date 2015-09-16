@@ -35,7 +35,7 @@ angular
         url: "/",
         templateUrl: "js/templates/homepage.html"
       })
-      .state('startups', {
+      .state('loggedin', {
         url: "/loggedin",
         templateUrl: "js/templates/loggedin.html"
       })

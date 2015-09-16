@@ -1,9 +1,50 @@
-<div ng-controller="CommunityController as main">
-  
-<ul>
-  <li ng-repeat="communityMember in main.communityMembers">
-    <strong>{{communityMember.name}}</strong><em> {{communityMember.location}}</em>
-  </li>
-</ul>
+<section ng-controller="MainController as main">
 
-</div>
+<label>Look for Startup People based in</label>
+  <select ng-model="selectLocation">
+  <option style="display:none" value="">Select a City</option>
+  <option>Atlanta</option>
+  <option>Austin</option>
+  <option>Bangalore</option>
+  <option>Berlin</option>
+  <option>Boston</option>
+  <option>Boulder</option>
+  <option>Chicago</option>
+  <option>Hong Kong</option>
+  <option>Houston</option>
+  <option>London</option>
+  <option>Los Angeles</option>
+  <option>Melbourne</option>
+  <option>Montréal</option>
+  <option>Moscow</option>
+  <option>Munich</option>
+  <option>New Delhi</option>
+  <option>New York</option>
+  <option>Paris</option>
+  <option>San Francisco</option>
+  <option>Santiago</option>
+  <option>Sao Paulo</option>
+  <option>Seattle</option>
+  <option>Singapore</option>
+  <option>Stockholm</option>
+  <option>Sydney</option>
+  <option>Tel Aviv</option>
+  <option>Toronto</option>
+  <option>Vancouver</option>
+  <option>Washington DC</option>
+  </select>
+
+    <div ng-repeat="member in main.communityMembers| filter:{'location': selectLocation} | orderBy: 'name' | limitTo:50" class="col-sm-6 col-md-4">
+      <div class="thumbnail text-center">
+        <img ng-src="{{member.image}}" >
+        <div class="caption">
+          <h3>{{member.name}}</h3>
+          <h5>{{member.location}}</h5>
+          <a ng-href="{{member.url}}" target="_blank">Website</a>
+          <a ng-href="{{member.twitter}}" target="_blank">Twitter</a>
+          <p>{{member.bio}}</p>
+        </div>
+      </div>
+    </div>
+
+</section>

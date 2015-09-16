@@ -5,6 +5,32 @@ angular
 StartupsController.$inject = ["$resource", '$filter', 'TokenService', 'Startup'];
 
 function StartupsController($resource, $filter, TokenService, Startup){
+  // var orderBy    = $filter('orderBy');
+  // self.predicate = '-location';
+  // var self       = this;
+  // self.reverse   = true;
+
+  // self.order = function(predicate) {
+  //   self.reverse = (self.predicate === predicate) ? !self.reverse : false;
+  //   self.predicate = predicate;
+  // }
+
+
+
+  // self.all = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   var self = this;
