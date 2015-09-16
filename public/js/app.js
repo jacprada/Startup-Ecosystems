@@ -32,9 +32,20 @@ angular
         templateUrl: "js/templates/login.html"
       })
       .state('homepage', {
-        templateUrl: "js/templates/homepage.html",
-        url: "/"
+        url: "/",
+        templateUrl: "js/templates/homepage.html"
+      })
+      .state('startups', {
+        url: "/loggedin",
+        templateUrl: "js/templates/loggedin.html"
+      })
+      .state('startups', {
+        url: "/startups",
+        templateUrl: "js/templates/startups.html"
+      })
+      .state('community', {
+        url: "/community",
+        templateUrl: "js/templates/community.html"
       })
       $urlRouterProvider.otherwise('/');    
     }
-
