@@ -1,42 +1,39 @@
 <section ng-controller="MainController as main">
 
-  <form ng-submit="main.getRandomStartups()">
-    <label>Look for Startups based in</label>
-    <select ng-model="location">
-      <option>Atlanta</option>
-      <option>Austin</option>
-      <option>Bangalore</option>
-      <option>Berlin</option>
-      <option>Boston</option>
-      <option>Boulder</option>
-      <option>Chicago</option>
-      <option>Hong Kong</option>
-      <option>Houston</option>
-      <option>London</option>
-      <option>Los Angeles</option>
-      <option>Melbourne</option>
-      <option>Montréal</option>
-      <option>Moscow</option>
-      <option>Munich</option>
-      <option>New Delhi</option>
-      <option>New York</option>
-      <option>Paris</option>
-      <option>San Francisco</option>
-      <option>Santiago</option>
-      <option>Sao Paulo</option>
-      <option>Seattle</option>
-      <option>Singapore</option>
-      <option>Stockholm</option>
-      <option>Sydney</option>
-      <option>Tel Aviv</option>
-      <option>Toronto</option>
-      <option>Vancouver</option>
-      <option>Washington DC</option>
-    </select>
-    <button>GO</button>
-  </form>
+  <label>Look for Startups based in</label>
+  <select ng-model="location">
+    <option>Atlanta </option>
+    <option>Austin </option>
+    <option>Bangalore </option>
+    <option>Berlin </option>
+    <option>Boston </option>
+    <option>Boulder </option>
+    <option>Chicago </option>
+    <option>Hong Kong </option>
+    <option>Houston </option>
+    <option>London </option>
+    <option>Los Angeles </option>
+    <option>Melbourne </option>
+    <option>Montréal </option>
+    <option>Moscow </option>
+    <option>Munich </option>
+    <option>New Delhi </option>
+    <option>New York </option>
+    <option>Paris </option>
+    <option>San Francisco </option>
+    <option>Santiago </option>
+    <option>Sao Paulo </option>
+    <option>Seattle </option>
+    <option>Singapore </option>
+    <option>Stockholm </option>
+    <option>Sydney </option>
+    <option>Tel Aviv </option>
+    <option>Toronto </option>
+    <option>Vancouver </option>
+    <option>Washington DC </option>
+  </select>
 
-    <div ng-repeat="startup in main.startups| filter:{'location': location} | orderBy: 'name' | limitTo:30" class="col-sm-6 col-md-4">
+    <div ng-repeat=" startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed "class="col-sm-6 col-md-4">
       <div class="thumbnail text-center">
         <img ng-src="{{startup.image}}" >
         <div class="caption">
@@ -49,12 +46,9 @@
         </div>
       </div>
     </div>
+
+  <div class="row">
+  <button class="col-sm-6 col-md-4" ng-click="main.loadMore()">SHOW ME MORE</button>
+  </div>
   
-
-<!--   <ul>
-    <li >
-      <strong>{{startup.name}}</strong><em> {{startup.location}}</em>
-    </li>
-  </ul> -->
-
 </section>

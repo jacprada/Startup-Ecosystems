@@ -7,30 +7,59 @@ MainController.$inject = ["$resource", '$filter', 'TokenService', 'Startup', 'Co
 function MainController($resource, $filter, TokenService, Startup, Community){
   var self = this;
 
-  this.communityMember = {}
-  this.communityMembers = Community.query();
+  self.communityMember = {}
+  self.communityMembers = Community.query();
 
-  this.startup = {}
-  this.startups = Startup.query();
+  self.startup = {}
+  self.startups = Startup.query();
 
-  this.startupsLocation = Startup
+  self.totalDisplayed = 30;
 
-  this.startupSelected = 'Pick a City';
+  self.loadMore = function () {
+    self.totalDisplayed += 30;  
+  };
 
-  this.getRandomStartups = function() {
-    Startup.query(function(data) {
-      return data[Math.floor(Math.random() * data.length)];
-    })
-  }
+  self.random = function(startup) {
+    return Math.random();
+  };
+
+  // self.random = function() {
+  //   return 15 - Math.random();
+  // }
+
+  // self.newStartupSearch = []
+
+  // self.getRandomStartups = function() {
+
+  //   var startupsByLocation = [] 
+  //   var startupData = []
+
+
+  //   for (var i = 0 ; i < self.startups.length ; i++) {
+  //     if(self.startups[i].location==self.startup.location){
+  //       startupsByLocation.push(self.startups[i])
+  //     }
+  //   };
+
+  //   console.log(startupsByLocation)
+
+
+
+  //   for (var i = 0; i < 30; i++) {
+  //     startupData.push(startupsByLocation[Math.floor(Math.random() * startupsByLocation.length)])
+  //   };
+
+  //   console.log(startupData)
+
+  //   self.newStartupSearch.push(startupData)
+  //   self.startup = {}
+
+  //   console.log(self.newStartupSearch)
+  // }
 
   // Post.query(function(data) {
   //    $scope.posts = data;
   //  });
-
-
-
-
-
 
 
   // this.filterFunction = function(element) {
