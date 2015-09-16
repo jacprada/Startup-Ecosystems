@@ -5,8 +5,23 @@ var UserSchema = new mongoose.Schema({
   full_name: {type: String, required: true },
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true },
-  access_token: String
+    twitter: {
+      id: String,
+      token: String
+    }
 });
+
+// var UserSchema = mongoose.Schema({
+//   local: {
+//     full_name: String,
+//     email: String,
+//     password: String
+//   },
+//   twitter: {
+//     id: String,
+//     token: String
+//   }
+// });
 
 UserSchema.methods.encrypt = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

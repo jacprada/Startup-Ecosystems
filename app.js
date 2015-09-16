@@ -26,14 +26,23 @@ app.use(cors());
 app.use(morgan('dev'));
 
 require('./config/passport')(passport, TwitterStrategy);
+app.use(passport.initialize());
 
-app.get('/api/auth/twitter', passport.authenticate('twitter'));
+app.get("/api/auth/twitter", passport.authenticate("twitter", {token : { secure: false }}));
 
-app.get('/api/auth/twitter/callback', passport.authenticate('twitter',{
-  successRedirect: 'http://localhost:8000/',
-  failureRedirect: 'http://localhost:8000/signin'
-  })
-)
+app.get("api//auth/twitter/callback", passport.authenticate("twitter", {
+  successRedirect: "/localhost:8000/",
+  failureRedirect: "/localhost:8000/signin"
+}));
+
+
+// app.get('/api/auth/twitter', passport.authenticate('twitter'));
+
+// app.get('/api/auth/twitter/callback', passport.authenticate('twitter',{
+//   successRedirect: 'http://localhost:8000/',
+//   failureRedirect: 'http://localhost:8000/signin'
+//   })
+// )
 
 app.use(require('./controllers'));
 

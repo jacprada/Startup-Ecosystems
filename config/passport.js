@@ -39,50 +39,90 @@ module.exports = function(passport) {
      });
    });
 
-   passport.use('twitter', new TwitterStrategy({
-       consumerKey: 'tiFFEAmcEGGPxpUcIrYWEx1aQ',
-       consumerSecret: 'KQ3jIoEaqAbSR9b7nRqZY0sGIDRaRJQUcR1mN9ICTXvklpIZRF',
-       callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
-     },
-     function(token, tokenSecret, profile, done) {
+//    passport.use('twitter', new TwitterStrategy({
+//        consumerKey: 'tiFFEAmcEGGPxpUcIrYWEx1aQ',
+//        consumerSecret: 'KQ3jIoEaqAbSR9b7nRqZY0sGIDRaRJQUcR1mN9ICTXvklpIZRF',
+//        callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+//      },
+//      function(token, tokenSecret, profile, done) {
 
-             // make the code asynchronous
-         // User.findOne won't fire until we have all our data back from Twitter
-         process.nextTick(function() {
+//              // make the code asynchronous
+//          // User.findOne won't fire until we have all our data back from Twitter
+//          process.nextTick(function() {
 
-           User.findOne({ 'email' : profile.id }, function(err, user) {
+//            User.findOne({ 'email' : profile.id }, function(err, user) {
 
-                     // if there is an error, stop everything and return that
-                     // ie an error connecting to the database
-                     if (err)
-                       return done(err);
+//                      // if there is an error, stop everything and return that
+//                      // ie an error connecting to the database
+//                      if (err)
+//                        return done(err);
 
-                     // if the user is found then log them in
-                     if (user) {
-                         return done(null, user); // user found, return that user
-                       } else {
-                         // if there is no user, create them
-                         var newUser                 = new User();
+//                      // if the user is found then log them in
+//                      if (user) {
+//                          return done(null, user); // user found, return that user
+//                        } else {
+//                          // if there is no user, create them
+//                          var newUser                 = new User();
 
-                         // set all of the user data that we need
-                         // newUser.id          = profile.id;
-                         newUser.full_name   = profile.displayName;
-                         newUser.token       = token;
-                         newUser.email       = profile.email;
-                         newUser.password    = jwt.sign(token,secret);
+//                          // set all of the user data that we need
+//                          // newUser.id          = profile.id;
+//                          newUser.full_name   = profile.displayName;
+//                          newUser.token       = token;
+//                          newUser.email       = profile.email;
+//                          newUser.password    = jwt.sign(token,secret);
 
-                         // save our user into the database
-                         newUser.save(function(err) {
-                           if (err)
-                             throw err;
-                           return done(null, newUser);
-                         });
-                       }
-                     });
+//                          // save our user into the database
+//                          newUser.save(function(err) {
+//                            if (err)
+//                              throw err;
+//                            return done(null, newUser);
+//                          });
+//                        }
+//                      });
 
-});
+// });
 
-}));
+// }));
+
+passport.use("twitter", new TwitterStrategy({
+    consumerKey: 'tiFFEAmcEGGPxpUcIrYWEx1aQ',
+    consumerSecret: 'KQ3jIoEaqAbSR9b7nRqZY0sGIDRaRJQUcR1mN9ICTXvklpIZRF',
+    callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+    // Set this callbackURL in apps.twitter settings as well to make it work
+  },
+  function(token, tokenSecret, profile, callback) {
+    console.log(profile);
+      User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
+        if (err) return callback(err);
+        if (user) {
+          return callback(null, user);
+        } else {
+          var newUser = new User();
+          
+          newUser.twitter.id           = profile.id;
+          newUser.twitter.token        = token;
+
+          newUser.save(function(err) {
+            if (err) throw err;
+            return callback(null, newUser);
+          });
+        };
+      });
+  }
+));
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 //    passport.use('facebook', new FacebookStrategy({
