@@ -9,11 +9,12 @@ var expressJWT        = require('express-jwt');
 var cheerio           = require('cheerio');
 var mongoose          = require('mongoose');
 var passport          = require('passport');
+var TwitterStrategy   = require('passport-twitter').Strategy;
 var config            = require('./config/config');
 
 app
   .use('/api', expressJWT({ secret: config.secret })
-  .unless({path: ['/api/auth/signup', '/api/auth/signin']}));
+  .unless({path: ['/api/auth/signup', '/api/auth/signin', '/api/auth/twitter', '/api/auth/twitter/callback']}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -21,10 +22,18 @@ app.use(bodyParser.urlencoded({extended: false}));
 var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/startup-ecosystems'
 mongoose.connect(databaseURL);
 
-require('./config/passport')(passport);
-
 app.use(cors());
 app.use(morgan('dev'));
+
+require('./config/passport')(passport, TwitterStrategy);
+
+app.get('/api/auth/twitter', passport.authenticate('twitter'));
+
+app.get('/api/auth/twitter/callback', passport.authenticate('twitter',{
+  successRedirect: 'http://localhost:8000/',
+  failureRedirect: 'http://localhost:8000/signin'
+  })
+)
 
 app.use(require('./controllers'));
 
