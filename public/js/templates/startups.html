@@ -9,7 +9,7 @@
     <option>Boston </option>
     <option>Boulder </option>
     <option>Chicago </option>
-    <option>Hong Kong </option>
+    <option>Hong Kong </option> 
     <option>Houston </option>
     <option>London </option>
     <option>Los Angeles </option>
@@ -33,22 +33,23 @@
     <option>Washington DC </option>
   </select>
 
-    <div ng-repeat=" startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed "class="col-sm-6 col-md-4">
-      <div class="thumbnail text-center">
-        <img ng-src="{{startup.image}}" >
-        <div class="caption">
-          <h3>{{startup.name}}</h3>
-          <h5>{{startup.location}}</h5>
-          <h6>{{startup._id}}</h6>
-          <a ng-href="{{startup.url}}" target="_blank">Website</a>
-          <a ng-href="{{startup.twitter}}" target="_blank">Twitter</a>
-          <p>{{startup.bio}}</p>
-        </div>
+  <div ng-repeat=" startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed "class="col-sm-6 col-md-4">
+    <div class="thumbnail text-center">
+      <img ng-src="{{startup.image}}" >
+      <div class="caption">
+        <h3>{{startup.name}}</h3>
+        <h5>{{startup.location}}</h5>
+        <h6>{{startup._id}}</h6>
+        <a ng-href="{{startup.url}}" target="_blank">Website</a>
+        <a ng-href="{{startup.twitter}}" target="_blank">Twitter</a>
+        <p>{{startup.bio}}</p>
+        <button>Add to Favorite</button>
       </div>
     </div>
+  </div>
 
   <div class="row">
-  <button class="col-sm-6 col-md-4" ng-click="main.loadMore()">SHOW ME MORE</button>
+    <button class="col-sm-6 col-md-4" ng-click="main.loadMore()">SHOW ME MORE</button>
   </div>
   
 </section>

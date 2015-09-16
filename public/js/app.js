@@ -22,6 +22,7 @@ angular
 
   MainRouter.$inject = ['$stateProvider', '$urlRouterProvider']
   function MainRouter($stateProvider, $urlRouterProvider){
+
     $stateProvider
       .state('signup', {
         url: "/signup",

@@ -13,10 +13,10 @@ function MainController($resource, $filter, TokenService, Startup, Community){
   self.startup = {}
   self.startups = Startup.query();
 
-  self.totalDisplayed = 30;
+  self.totalDisplayed = 9;
 
   self.loadMore = function () {
-    self.totalDisplayed += 30;  
+    self.totalDisplayed += 9;  
   };
 
   self.random = function(startup) {
