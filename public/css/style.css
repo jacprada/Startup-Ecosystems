@@ -32,6 +32,53 @@ body {
   color: #53bf6b;
 }
 
+/*LOGIN AND SIGNUP FORM*/
+
+#form_body {
+  background-color: black;
+  border: none;
+}
+
+#form_footer {
+  background-color: black;
+  border: none;
+}
+
+#form_title {
+  color: #19763E;
+}
+
+#form_label {
+  color: #53bf6b;
+}
+
+#form_welcome {
+  margin-bottom: 15px;
+  color: #FFFFFF;
+}
+
+#form_input {
+  max-width: 300px;
+  margin: 0 auto 10px auto;
+  background-color: #FFFFFF;
+  border-radius: 1px;
+  color: #19763E;
+  text-align: center;
+  border: none;
+}
+
+#form_submit {
+  background-color: #19763E;
+  margin: 10px 0 5px 0;
+  border-radius: 1px;
+  border: none;
+}
+
+#form_submit:hover {
+  background-color: #53bf6b;
+}
+
+
 
 /*HOME PAGE*/
 
@@ -40,7 +87,6 @@ body {
 }
 
 #home_big {
-/*  color: #D3D3D3;*/
   color: #19763E;
 }
 

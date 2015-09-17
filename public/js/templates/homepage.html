@@ -13,24 +13,25 @@
 </section>
 
 
-<div class="modal fade" id="login_section">
+<div class="modal fade text-center" id="login_section">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div id="form_header" class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Login</h4>
+        <h4 id="form_title" class="modal-title">Login</h4>
       </div>
-      <div class="modal-body">
+      <div id="form_body" class="modal-body">
         <form id="authorize" ng-hide="users.isLoggedIn()" ng-submit="users.authorize()">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="Email" ng-model="users.user.email">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password" ng-model="users.user.password">
-          <input type="submit" class="btn btn-primary" value="Submit">
+          <label id="form_label" for="email">Email</label>
+          <input id="form_input" type="email" class="form-control" id="email" placeholder="Get" ng-model="users.user.email">
+          <label id="form_label" for="password">Password</label>
+          <input id="form_input" type="password" class="form-control" id="password" placeholder="Ready" ng-model="users.user.password">
+          <input id="form_submit" type="submit" class="btn btn-primary" value="Submit">
         </form>
       </div>
-      <div class="modal-footer" ng-show="users.isLoggedIn()">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Start!</button>
+      <div id="form_footer" class="modal-footer text-center" ng-show="users.isLoggedIn()">
+        <h5 id="form_welcome" class="modal-title">Welcome to the Machine.</h5>
+        <button id="form_submit" type="button" class="btn btn-primary" data-dismiss="modal">Explore</button>
       </div>
     </div>
   </div>
