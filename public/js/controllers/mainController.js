@@ -16,7 +16,6 @@ function MainController($resource, $filter, TokenService, Startup, Community, $w
   // });
 
 self.deleteCommunityMember = function(member){
-  console.log("hello")
   Community.delete({id: member._id});
   var index = self.communityMembers.indexOf(member);
   self.communityMembers.splice(index, 1);
@@ -24,6 +23,12 @@ self.deleteCommunityMember = function(member){
 
   self.startup  = {};
   self.startups = Startup.query();
+
+  self.deleteStartup = function(startup){
+    Startup.delete({id: startup._id});
+    var index = self.startups.indexOf(startup);
+    self.startups.splice(index, 1);
+  }
 
   // self.numberOfStartups = "Calculating size..."
   // self.startups = Startup.query(function(response){
