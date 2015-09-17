@@ -91,15 +91,23 @@ body {
 /*HOME PAGE*/
 
 #home_section{
-  margin: 250px 0;
+  margin: 100px 0;
 }
 
 #home_big {
+  margin: 10px 0;
+  font-size: 50px;
   color: #19763E;
 }
 
+#home_medium {
+  font-size: 30px;
+  color: #111;
+}
+
 #home_small {
-  color: #FFFFFF;
+  font-size: 20px;
+  color: #111;
 }
 
 #home_button {

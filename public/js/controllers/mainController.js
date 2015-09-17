@@ -7,11 +7,28 @@ MainController.$inject = ["$resource", '$filter', 'TokenService', 'Startup', 'Co
 function MainController($resource, $filter, TokenService, Startup, Community, $window, $scope){
   var self = this;
 
-  self.communityMember = {}
+  self.communityMember = {};
   self.communityMembers = Community.query();
+  // self.numberOfMembers = "Calculating size..."
+  // self.communityMembers = Community.query(function(response){
+  //   console.log(response.length)
+  //   self.numberOfMembers = response.length;
+  // });
+  
 
-  self.startup  = {}
+
+  self.startup  = {};
   self.startups = Startup.query();
+  // self.numberOfStartups = "Calculating size..."
+  // self.startups = Startup.query(function(response){
+  //   console.log(response.length)
+  //   self.numberOfStartups = response.length;
+  // });
+
+
+
+
+  
   
   // self.finite   = true;
   // self.results  = [];
