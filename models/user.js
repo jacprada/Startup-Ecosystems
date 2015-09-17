@@ -1,15 +1,24 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
+var Startup  = require("./startup");
+
 
 var UserSchema = new mongoose.Schema({
   full_name: {type: String, required: true },
   email: {type: String, required: true, unique: true},
-  password: {type: String, required: true },
-    twitter: {
-      id: String,
-      token: String
-    }
+  password: {type: String, required: true }
+  // favouriteStartups: [{ type : mongoose.Schema.ObjectId, ref: 'Startup' }]
 });
+
+// var UserSchema = new mongoose.Schema({
+//   full_name: {type: String, required: true },
+//   email: {type: String, required: true, unique: true},
+//   password: {type: String, required: true },
+//     twitter: {
+//       id: String,
+//       token: String
+//     }
+// });
 
 // var UserSchema = mongoose.Schema({
 //   local: {

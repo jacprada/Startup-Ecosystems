@@ -14,6 +14,10 @@ function Startup($resource, API) {
       'query':     { method: 'GET', isArray: true},
       'remove':    { method: 'DELETE' },
       'delete':    { method: 'DELETE' }
+      // "favourite": { 
+      //   url: url+"/users/:id/favourite/"+id
+      //   method: "POST"
+      // }
     }
   );
 }
