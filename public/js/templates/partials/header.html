@@ -1,6 +1,6 @@
 <header ng-controller="usersController as users">
   <nav class="navbar navbar-light bg-faded">
-    <a class="navbar-brand" href="/#/">MoviesApp</a>
+    <a class="navbar-brand" href="/#/">The StartHub</a>
     <ul class="nav navbar-nav">
       <li class="nav-item" ng-hide="users.isLoggedIn()">
         <a class="nav-link" href="/#/login">Login</a>
@@ -8,9 +8,9 @@
       <li class="nav-item" ng-hide="users.isLoggedIn()">
         <a class="nav-link" href="/#/signup">Signup</a>
       </li>
-      <li class="nav-item" ng-hide="users.isLoggedIn()">
+<!--       <li class="nav-item" ng-hide="users.isLoggedIn()">
         <a class="nav-link" href="http://localhost:3000/api/auth/twitter">Twitter Login</a>
-      </li>
+      </li> -->
       <li class="nav-item" ng-show="users.isLoggedIn()">
         <a class="nav-link" href="#" ng-click="users.disappear()">Log Out</a>
       </li>
