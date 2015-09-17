@@ -26,9 +26,9 @@
       <div id="form_body" class="modal-body">
         <form id="authorize" ng-hide="users.isLoggedIn()" ng-submit="users.authorize()">
           <label id="form_label" for="email">Email</label>
-          <input id="form_input" type="email" class="form-control" id="email" placeholder="Get" ng-model="users.user.email">
+          <input id="form_input" type="email" class="form-control" id="email" ng-model="users.user.email">
           <label id="form_label" for="password">Password</label>
-          <input id="form_input" type="password" class="form-control" id="password" placeholder="Ready" ng-model="users.user.password">
+          <input id="form_input" type="password" class="form-control" id="password" ng-model="users.user.password">
           <input id="form_submit" type="submit" class="btn btn-primary" value="Submit">
         </form>
       </div>
@@ -51,11 +51,11 @@
       <div id="form_body" class="modal-body">
         <form id="authorize" ng-hide="users.isLoggedIn()" ng-submit="users.join()">
         <label id="form_label" for="full_name">Full Name</label>
-        <input id="form_input" type="text" class="form-control" id="full_name" placeholder="Are" ng-model="users.user.full_name">
+        <input id="form_input" type="text" class="form-control" id="full_name" ng-model="users.user.full_name">
         <label id="form_label" for="email">Email</label>
-        <input id="form_input" type="email" class="form-control" id="email" placeholder="You" ng-model="users.user.email">
+        <input id="form_input" type="email" class="form-control" id="email" ng-model="users.user.email">
         <label id="form_label" for="password">Password</label>
-        <input id="form_input" type="password" class="form-control" id="password" placeholder="Ready?" ng-model="users.user.password">
+        <input id="form_input" type="password" class="form-control" id="password" ng-model="users.user.password">
         <input id="form_submit" type="submit" class="btn btn-primary" value="Submit">
         </form>
       </div>

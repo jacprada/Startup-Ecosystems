@@ -14,11 +14,17 @@ function MainController($resource, $filter, TokenService, Startup, Community, $w
   //   console.log(response.length)
   //   self.numberOfMembers = response.length;
   // });
-  
 
+self.deleteCommunityMember = function(member){
+  console.log("hello")
+  Community.delete({id: member._id});
+  var index = self.communityMembers.indexOf(member);
+  self.communityMembers.splice(index, 1);
+}
 
   self.startup  = {};
   self.startups = Startup.query();
+
   // self.numberOfStartups = "Calculating size..."
   // self.startups = Startup.query(function(response){
   //   console.log(response.length)
@@ -26,10 +32,6 @@ function MainController($resource, $filter, TokenService, Startup, Community, $w
   // });
 
 
-
-
-  
-  
   // self.finite   = true;
   // self.results  = [];
 
@@ -47,9 +49,9 @@ function MainController($resource, $filter, TokenService, Startup, Community, $w
     self.totalDisplayed += 9;
   };
 
-  self.random = function(startup) {
-    return Math.random();
-  };
+  // self.random = function(startup) {
+  //   return Math.random();
+  // };
 
   // $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
   //   console.log("Infinite")
