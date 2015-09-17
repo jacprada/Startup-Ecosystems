@@ -128,8 +128,23 @@ body {
 #search_label {
   font-size: 18px;
   font-weight: 400;
-  color: #FFF;
+  color: #FFF;;
 }
+
+#search_select {
+  background-color: #111;
+  color: #FFF;
+  font-size: 13px;
+  border-color: #FFF;
+}
+
+#search_select option {
+  color: red !important;
+}
+
+/*#search_option {
+  color: red !important;
+}*/
 
 #row {
   padding: 0;
@@ -212,11 +227,11 @@ li img {
 }
 
 #more_button {
-  width: 100px;
-  margin: 10px 5px;
+  max-width: 150px;
+  margin: 10px 5px 20px 5px;
   background-color: #19763E;
   border: none;
-  border-radius: 1px;
+  border-radius: 3px;
 }
 
 #more_button:hover {
