@@ -36,7 +36,7 @@
       <li id="li_repeat" ng-repeat="member in main.communityMembers | filter:{'location': location} | orderBy:'name' | limitTo:main.totalDisplayed">
       <div class="col-lg-4">
         <ul id="ul_repeat">
-          <button class="close" ng-click="main.deleteCommunityMember(member)">&times;</button>
+          <li id="li_repeat"><button id="delete_button" class="close" ng-click="main.deleteCommunityMember(member)">&times;</button></li>
           <li id="li_repeat"><img data-ng-src="{{member.image}}" alt="{{member.name}}"></li>
           <li id="li_repeat"><h3 id="title_repeat">{{member.name}}</h3></li>
           <li id="li_repeat"><h4 id="location_repeat">{{member.location}}</h4></li>
