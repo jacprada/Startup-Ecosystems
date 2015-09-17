@@ -2,7 +2,7 @@
   <h1 id="home_big">The Start Hub</h1>
   <h3 id="home_small">Explore a Massive Database of whatever.</h3>
   <a id="home_button" class="btn btn-info" role="button" data-toggle="modal" data-target="#login_section">Login</a>
-  <a id="home_button" href="/#/signup" class="btn btn-info" role="button">Signup</a>
+  <a id="home_button" class="btn btn-info" role="button" data-toggle="modal" data-target="#signup_section">Signup</a>
 </section>
 
 <section id="home_section" ng-show="users.isLoggedIn()" class="text-center">
@@ -27,6 +27,33 @@
           <label id="form_label" for="password">Password</label>
           <input id="form_input" type="password" class="form-control" id="password" placeholder="Ready" ng-model="users.user.password">
           <input id="form_submit" type="submit" class="btn btn-primary" value="Submit">
+        </form>
+      </div>
+      <div id="form_footer" class="modal-footer text-center" ng-show="users.isLoggedIn()">
+        <h5 id="form_welcome" class="modal-title">Welcome Home.</h5>
+        <button id="form_submit" type="button" class="btn btn-primary" data-dismiss="modal">Explore</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade text-center" id="signup_section">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div id="form_header" class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 id="form_title" class="modal-title">Signup</h4>
+      </div>
+      <div id="form_body" class="modal-body">
+        <form id="authorize" ng-hide="users.isLoggedIn()" ng-submit="users.join()">
+        <label id="form_label" for="full_name">Full Name</label>
+        <input id="form_input" type="text" class="form-control" id="full_name" placeholder="Are" ng-model="users.user.full_name">
+        <label id="form_label" for="email">Email</label>
+        <input id="form_input" type="email" class="form-control" id="email" placeholder="You" ng-model="users.user.email">
+        <label id="form_label" for="password">Password</label>
+        <input id="form_input" type="password" class="form-control" id="password" placeholder="Ready?" ng-model="users.user.password">
+        <input id="form_submit" type="submit" class="btn btn-primary" value="Submit">
         </form>
       </div>
       <div id="form_footer" class="modal-footer text-center" ng-show="users.isLoggedIn()">
