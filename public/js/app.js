@@ -36,10 +36,6 @@ angular
         url: "/",
         templateUrl: "js/templates/homepage.html"
       })
-      .state('loggedin', {
-        url: "/loggedin",
-        templateUrl: "js/templates/loggedin.html"
-      })
       .state('startups', {
         url: "/startups",
         templateUrl: "js/templates/startups.html"

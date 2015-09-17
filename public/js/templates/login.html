@@ -3,8 +3,7 @@
   <form id="authorize" ng-hide="users.isLoggedIn()" ng-submit="users.authorize()">
    
       <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="users.user.email">
-      <small class="text-muted">We'll never share your email with anyone else.</small>
+      <input type="email" class="form-control" id="email" placeholder="Email" ng-model="users.user.email">
       <label for="password">Password</label>
       <input type="password" class="form-control" id="password" placeholder="Password" ng-model="users.user.password">
 

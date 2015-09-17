@@ -33,8 +33,34 @@
     <option>Washington DC </option>
   </select>
 
-  <div ng-repeat=" startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed "class="col-sm-6 col-md-4">
-    <div class="thumbnail text-center">
+  <ul>
+    <li ng-repeat=" startup in main.startups | filter:{'location': location} | orderBy:'name' | limitTo:main.totalDisplayed">
+      {{startup.name}} - <a ng-href="{{startup.url}}" target="_blank">Website</a> - <a ng-href="{{startup.twitter}}" target="_blank">Twitter</a> - <a ng-href="{{startup.url}}" target="_blank" data-toggle="modal" data-target="#startup_modal">View</a>
+    <li ng-click="main.loadMore()">SHOW ME MORE</li>
+  </ul>
+
+
+  <div class="modal fade" id="startup_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{startup.name}}</h4>
+          <h4 class="modal-title">Hello</h4>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+<!--   <div ng-repeat=" startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed "class="col-sm-6 col-md-4">
+  <p>{{startup.name}} - <a ng-href="{{startup.url}}" target="_blank">Website</a> - <a ng-href="{{startup.twitter}}" target="_blank">Twitter</a></p> -->
+    <!-- <div class="thumbnail text-center">
       <img ng-src="{{startup.image}}" >
       <div class="caption">
         <h3>{{startup.name}}</h3>
@@ -45,11 +71,11 @@
         <p>{{startup.bio}}</p>
         <button>Add to Favorite</button>
       </div>
-    </div>
-  </div>
+    </div> -->
+<!--   </div>
 
   <div class="row">
     <button class="col-sm-6 col-md-4" ng-click="main.loadMore()">SHOW ME MORE</button>
-  </div>
+  </div> -->
   
 </section>

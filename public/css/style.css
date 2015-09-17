@@ -1,11 +1,35 @@
 /*GENERIC*/
 
 body {
-  background-image: url('./img/bg.png');
+  background-image: url('./img/bg0.png');
   max-width: 100vw;
   max-height: 100vh;
 /*  background-size: cover;*/
   font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
+}
+
+
+/*NAV BAR*/
+
+#nav {
+  background-color: #FFFFFF;
+  border-radius: 0px;
+}
+
+#nav_home {
+  color: #19763E;
+}
+
+#nav_home:hover {
+  color: #53bf6b;
+}
+
+#nav_link {
+  color: #19763E;
+}
+
+#nav_link:hover {
+  color: #53bf6b;
 }
 
 
@@ -17,33 +41,21 @@ body {
 
 #home_big {
 /*  color: #D3D3D3;*/
-  color: #FFFFFF;
+  color: #19763E;
 }
 
 #home_small {
-  color: #a8a8a8;
+  color: #FFFFFF;
 }
 
 #home_button {
   width: 100px;
   margin: 10px 5px;
-  background-color: #d7d7d7;
+  background-color: #19763E;
   border: none;
+  border-radius: 1px;
 }
 
 #home_button:hover {
-  background-color: #a8a8a8;
-}
-
-#home_link {
-  color: #FFFFFF;
-}
-
-#home_link:hover {
-  color: #FFFFFF;
-  text-decoration: none;
-}
-
-#bla {
-  appearance: button;
+  background-color: #53bf6b;
 }
