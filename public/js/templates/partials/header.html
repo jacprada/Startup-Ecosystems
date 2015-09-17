@@ -10,12 +10,10 @@
       <li class="nav-item" ng-show="users.isLoggedIn()">
         <a id="nav_link" class="nav-link" href="/#/community">Community</a>
       </li>
-      </ul>
-      <ul class="nav navbar-nav right">
 <!--       <li class="nav-item" ng-hide="users.isLoggedIn()">
         <a class="nav-link" href="http://localhost:3000/api/auth/twitter">Twitter Login</a>
       </li> -->
-      <li class="nav-item" ng-show="users.isLoggedIn()">
+      <li id="right" class="nav-item" ng-show="users.isLoggedIn()">
         <a id="nav_link" class="nav-link" href="#" ng-click="users.disappear()">Logout</a>
       </li>
     </ul>

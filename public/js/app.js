@@ -24,17 +24,13 @@ angular
   function MainRouter($stateProvider, $urlRouterProvider){
 
     $stateProvider
-      .state('signup', {
-        url: "/signup",
-        templateUrl: "js/templates/signup.html"
-      })
-      .state('login', {
-        url: "/login",
-        templateUrl: "js/templates/login.html"
-      })
       .state('homepage', {
         url: "/",
         templateUrl: "js/templates/homepage.html"
+      })
+      .state('about', {
+        url: "/about",
+        templateUrl: "js/templates/about.html"
       })
       .state('startups', {
         url: "/startups",

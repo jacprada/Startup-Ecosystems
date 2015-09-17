@@ -1,46 +1,81 @@
-<section ng-controller="MainController as main">
+<div class="container-fluid" ng-controller="MainController as main">
 
-  <label>Look for Startups based in</label>
-  <select ng-model="location">
-    <option>Atlanta </option>
-    <option>Austin </option>
-    <option>Bangalore </option>
-    <option>Berlin </option>
-    <option>Boston </option>
-    <option>Boulder </option>
-    <option>Chicago </option>
-    <option>Hong Kong </option> 
-    <option>Houston </option>
-    <option>London </option>
-    <option>Los Angeles </option>
-    <option>Melbourne </option>
-    <option>Montréal </option>
-    <option>Moscow </option>
-    <option>Munich </option>
-    <option>New Delhi </option>
-    <option>New York </option>
-    <option>Paris </option>
-    <option>San Francisco </option>
-    <option>Santiago </option>
-    <option>Sao Paulo </option>
-    <option>Seattle </option>
-    <option>Singapore </option>
-    <option>Stockholm </option>
-    <option>Sydney </option>
-    <option>Tel Aviv </option>
-    <option>Toronto </option>
-    <option>Vancouver </option>
-    <option>Washington DC </option>
-  </select>
+<label>Look for Startups based in</label>
+<select ng-model="location">
+  <option value="" selected disabled>Please choose your city</option>
+  <option>Atlanta </option>
+  <option>Austin </option>
+  <option>Bangalore </option>
+  <option>Berlin </option>
+  <option>Boston </option>
+  <option>Boulder </option>
+  <option>Chicago </option>
+  <option>Hong Kong </option> 
+  <option>Houston </option>
+  <option>London </option>
+  <option>Los Angeles </option>
+  <option>Melbourne </option>
+  <option>Montréal </option>
+  <option>Moscow </option>
+  <option>Munich </option>
+  <option>New Delhi </option>
+  <option>New York </option>
+  <option>Paris </option>
+  <option>San Francisco </option>
+  <option>Santiago </option>
+  <option>Sao Paulo </option>
+  <option>Seattle </option>
+  <option>Singapore </option>
+  <option>Stockholm </option>
+  <option>Sydney </option>
+  <option>Tel Aviv </option>
+  <option>Toronto </option>
+  <option>Vancouver </option>
+  <option>Washington DC </option>
+</select>
 
+<div id="row" class="row">
   <ul>
+    <li id="li_repeat" ng-repeat="startup in main.startups | filter:{'location': location} | orderBy:'name' | limitTo:main.totalDisplayed">
+    <div class="col-lg-4">
+      <ul id="ul_repeat">
+        <li id="li_repeat"><img data-ng-src="{{startup.image}}" alt="{{startup.name}}"></li>
+        <li id="li_repeat"><h3 id="title_repeat">{{startup.name}}</h3></li>
+        <li id="li_repeat"><h4 id="location_repeat">{{startup.location}}</h4></li>
+        <li id="li_repeat" class="li_bio"><h6 id="bio_repeat">{{startup.bio}}</h6></li>
+        <li id="li_repeat" class="li_website"><a ng-href="{{startup.url}}" target="_blank">Website</a></li> 
+        <li id="li_repeat" class="li_twitter"><a ng-href="{{startup.twitter}}" target="_blank">Twitter </a></li>
+      </ul>
+    </div>
+    </li>
+  </ul>  
+</div>
+
+
+
+<!-- <div class="media" ng-repeat="startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed" >
+  <a class="media-left" ng-href="{{startup.url}}">
+    <img class="media-object" data-ng-src="{{startup.image}}" alt="{{startup.name}}">
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">{{startup.name}}</h4>
+    {{startup.bio}}
+  </div>
+</div> -->
+
+<button ng-click="main.loadMore()">SHOW ME MORE</button>
+
+</div>
+
+
+<!--   <ul>
     <li ng-repeat=" startup in main.startups | filter:{'location': location} | orderBy:'name' | limitTo:main.totalDisplayed">
-      {{startup.name}} - <a ng-href="{{startup.url}}" target="_blank">Website</a> - <a ng-href="{{startup.twitter}}" target="_blank">Twitter</a> - <a ng-href="{{startup.url}}" target="_blank" data-toggle="modal" data-target="#startup_modal">View</a>
+      {{startup.name}} - <a ng-href="{{startup.url}}" target="_blank">Website</a> - <a ng-href="{{startup.twitter}}" target="_blank">Twitter</a>
     <li ng-click="main.loadMore()">SHOW ME MORE</li>
-  </ul>
+  </ul> -->
 
 
-  <div class="modal fade" id="startup_modal">
+<!--   <div class="modal fade" id="startup_modal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -54,7 +89,7 @@
         </div>
     </div>
   </div>
-
+ -->
 
 
 
@@ -77,5 +112,4 @@
   <div class="row">
     <button class="col-sm-6 col-md-4" ng-click="main.loadMore()">SHOW ME MORE</button>
   </div> -->
-  
-</section>
+ 
