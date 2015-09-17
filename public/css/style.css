@@ -1,9 +1,10 @@
 /*GENERIC*/
 
 body {
-/*  background-image: url('./img/bg0.png');*/
+/*  background-image: url('./img/bg.png');*/
 /*  background-size: cover;*/
-  background-color: #F2F2F2;
+/*  background-color: #F2F2F2;*/
+  background-color: #ededed;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -17,11 +18,12 @@ body {
 
 #nav {
   background-color: #FFFFFF;
-  border-radius: 0px;
+  border-radius: 3px;
 }
 
 #nav_home {
   color: #19763E;
+  font-weight: 500;
 }
 
 #nav_home:hover {
@@ -30,6 +32,7 @@ body {
 
 #nav_link {
   color: #111111;
+  font-weight: 500;
 }
 
 #nav_link:hover {
@@ -42,13 +45,18 @@ body {
 
 /*LOGIN AND SIGNUP FORM*/
 
+#form_header {
+  background-color: #FFF;
+  border: black;
+}
+
 #form_body {
-  background-color: black;
+  background-color: #ededed;
   border: none;
 }
 
 #form_footer {
-  background-color: black;
+  background-color: #ededed;
   border: none;
 }
 
@@ -57,20 +65,21 @@ body {
 }
 
 #form_label {
-  color: #53bf6b;
+  color: #111111;
+  font-weight: 500;
 }
 
 #form_welcome {
   margin-bottom: 15px;
-  color: #FFFFFF;
+  color: #19763E;
 }
 
 #form_input {
   max-width: 300px;
   margin: 0 auto 10px auto;
   background-color: #FFFFFF;
-  border-radius: 1px;
-  color: #19763E;
+  border-radius: 3px;
+  color: #53bf6b;
   text-align: center;
   border: none;
 }
@@ -78,7 +87,7 @@ body {
 #form_submit {
   background-color: #19763E;
   margin: 10px 0 5px 0;
-  border-radius: 1px;
+  border-radius: 3px;
   border: none;
 }
 
@@ -115,7 +124,7 @@ body {
   margin: 10px 5px;
   background-color: #19763E;
   border: none;
-  border-radius: 1px;
+  border-radius: 3px;
 }
 
 #home_button:hover {
@@ -164,7 +173,7 @@ ul {
   background-color: #FFFFFF;
   margin: 10px;
   list-style: none;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 #li_repeat {
@@ -218,7 +227,7 @@ li img {
   background-color: #111;
   padding: 10px;
   color: #FFF;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 5px 5px;
 }
 
 .li_twitter a {
