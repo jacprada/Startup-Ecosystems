@@ -1,8 +1,9 @@
 <div class="container-fluid" ng-controller="MainController as main">
 
-<label>Look for Startups based in</label>
-<select ng-model="location">
-  <option value="" selected disabled>Please choose your city</option>
+<div id="search_bar" class="container-fluid text-center">
+<label id="search_label">Look for companies based in</label>
+<select id="search_select" ng-model="location">
+  <option value="" selected>All Startup Hubs</option>
   <option>Atlanta </option>
   <option>Austin </option>
   <option>Bangalore </option>
@@ -33,6 +34,7 @@
   <option>Vancouver </option>
   <option>Washington DC </option>
 </select>
+</div>
 
 <div id="row" class="row">
   <ul>
@@ -51,6 +53,12 @@
   </ul>  
 </div>
 
+<div class="container-fluid text-center">
+<button id="more_button" class="btn btn-info" ng-click="main.loadMore()">Show More</button>
+</div>
+</div>
+
+
 
 
 <!-- <div class="media" ng-repeat="startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed" >
@@ -62,11 +70,6 @@
     {{startup.bio}}
   </div>
 </div> -->
-
-<button ng-click="main.loadMore()">SHOW ME MORE</button>
-
-</div>
-
 
 <!--   <ul>
     <li ng-repeat=" startup in main.startups | filter:{'location': location} | orderBy:'name' | limitTo:main.totalDisplayed">
@@ -90,8 +93,6 @@
     </div>
   </div>
  -->
-
-
 
 <!--   <div ng-repeat=" startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed "class="col-sm-6 col-md-4">
   <p>{{startup.name}} - <a ng-href="{{startup.url}}" target="_blank">Website</a> - <a ng-href="{{startup.twitter}}" target="_blank">Twitter</a></p> -->
