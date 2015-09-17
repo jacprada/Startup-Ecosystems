@@ -1,6 +1,58 @@
-<section ng-controller="MainController as main">
+<div class="container-fluid" ng-controller="MainController as main">
 
-  <label>Look for Startup People based in</label>
+  <div id="search_bar" class="container-fluid text-center">
+    <label id="search_label">Look for people based in</label>
+    <select id="search_select" ng-model="location">
+      <option>Atlanta </option>
+      <option>Austin </option>
+      <option>Bangalore </option>
+      <option>Berlin </option>
+      <option>Boston </option>
+      <option>Boulder </option>
+      <option>Chicago </option>
+      <option>Hong Kong </option>
+      <option>Houston </option>
+      <option>London </option>
+      <option>Melbourne </option>
+      <option>Montréal </option>
+      <option>Moscow </option>
+      <option>Munich </option>
+      <option>New Delhi </option>
+      <option>New York </option>
+      <option>Paris </option>
+      <option>San Francisco </option>
+      <option>Santiago </option>
+      <option>Sao Paulo </option>
+      <option>Singapore </option>
+      <option>Stockholm </option>
+      <option>Sydney </option>
+      <option>Tel Aviv </option>
+    </select>
+  </div>
+
+  <div id="row" class="row">
+    <ul>
+      <li id="li_repeat" ng-repeat="member in main.communityMembers | filter:{'location': location} | orderBy:'name' | limitTo:main.totalDisplayed">
+      <div class="col-lg-4">
+        <ul id="ul_repeat">
+          <li id="li_repeat"><img data-ng-src="{{member.image}}" alt="{{member.name}}"></li>
+          <li id="li_repeat"><h3 id="title_repeat">{{member.name}}</h3></li>
+          <li id="li_repeat"><h4 id="location_repeat">{{member.location}}</h4></li>
+          <li id="li_repeat" class="li_bio"><h6 id="bio_repeat">{{member.bio}}</h6></li>
+          <li id="li_repeat" class="li_website"><a ng-href="{{member.url}}" target="_blank">Website</a></li> 
+          <li id="li_repeat" class="li_twitter"><a ng-href="{{member.twitter}}" target="_blank">Twitter </a></li>
+        </ul>
+      </div>
+      </li>
+    </ul>  
+  </div>
+
+  <div class="container-fluid text-center">
+    <button id="more_button" class="btn btn-info" ng-click="main.loadMore()">Show More</button>
+  </div>
+
+</div>
+<!--   <label>Look for Startup People based in</label>
   <select ng-model="location">
     <option>Atlanta </option>
     <option>Austin </option>
@@ -47,4 +99,4 @@
     <button class="col-sm-6 col-md-4" ng-click="main.loadMore()">SHOW ME MORE</button>
   </div>
 
-</section>
+</section> -->

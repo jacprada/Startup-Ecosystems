@@ -1,40 +1,40 @@
 <div class="container-fluid" ng-controller="MainController as main">
 
-<div id="search_bar" class="container-fluid text-center">
-<label id="search_label">Look for companies based in</label>
-<select id="search_select" ng-model="location">
-  <option value="" selected>All Startup Hubs</option>
-  <option id="search_option">Atlanta </option>
-  <option>Austin </option>
-  <option>Bangalore </option>
-  <option>Berlin </option>
-  <option>Boston </option>
-  <option>Boulder </option>
-  <option>Chicago </option>
-  <option>Hong Kong </option> 
-  <option>Houston </option>
-  <option>London </option>
-  <option>Los Angeles </option>
-  <option>Melbourne </option>
-  <option>Montréal </option>
-  <option>Moscow </option>
-  <option>Munich </option>
-  <option>New Delhi </option>
-  <option>New York </option>
-  <option>Paris </option>
-  <option>San Francisco </option>
-  <option>Santiago </option>
-  <option>Sao Paulo </option>
-  <option>Seattle </option>
-  <option>Singapore </option>
-  <option>Stockholm </option>
-  <option>Sydney </option>
-  <option>Tel Aviv </option>
-  <option>Toronto </option>
-  <option>Vancouver </option>
-  <option>Washington DC </option>
-</select>
-</div>
+  <div id="search_bar" class="container-fluid text-center">
+    <label id="search_label">Look for companies based in</label>
+    <select id="search_select" ng-model="location">
+      <option value="" selected>All Startup Hubs</option>
+      <option>Atlanta </option>
+      <option>Austin </option>
+      <option>Bangalore </option>
+      <option>Berlin </option>
+      <option>Boston </option>
+      <option>Boulder </option>
+      <option>Chicago </option>
+      <option>Hong Kong </option> 
+      <option>Houston </option>
+      <option>London </option>
+      <option>Los Angeles </option>
+      <option>Melbourne </option>
+      <option>Montréal </option>
+      <option>Moscow </option>
+      <option>Munich </option>
+      <option>New Delhi </option>
+      <option>New York </option>
+      <option>Paris </option>
+      <option>San Francisco </option>
+      <option>Santiago </option>
+      <option>Sao Paulo </option>
+      <option>Seattle </option>
+      <option>Singapore </option>
+      <option>Stockholm </option>
+      <option>Sydney </option>
+      <option>Tel Aviv </option>
+      <option>Toronto </option>
+      <option>Vancouver </option>
+      <option>Washington DC </option>
+    </select>
+  </div>
 
 <div id="row" class="row">
   <ul>
@@ -54,11 +54,10 @@
 </div>
 
 <div class="container-fluid text-center">
-<button id="more_button" class="btn btn-info" ng-click="main.loadMore()">Show More</button>
-</div>
+  <button id="more_button" class="btn btn-info" ng-click="main.loadMore()">Show More</button>
 </div>
 
-
+</div>
 
 
 <!-- <div class="media" ng-repeat="startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed" >

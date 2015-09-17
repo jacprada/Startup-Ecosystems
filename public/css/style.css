@@ -138,14 +138,6 @@ body {
   border-color: #FFF;
 }
 
-#search_select option {
-  color: red !important;
-}
-
-/*#search_option {
-  color: red !important;
-}*/
-
 #row {
   padding: 0;
   margin: 0 auto;
