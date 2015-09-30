@@ -4,7 +4,7 @@ angular
 
 Startup.$inject = ['$resource', 'API'];
 function Startup($resource, API) {
-  var url = 'http://localhost:3000/api'
+  var url = 'https://startup-ecosystems.herokuapp.com/api'
 
   return $resource(
     url+'/startups/:id',
