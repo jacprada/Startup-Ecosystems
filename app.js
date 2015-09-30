@@ -19,6 +19,8 @@ app
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use(express.static(__dirname + '/public'));
+
 var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/startup-ecosystems'
 mongoose.connect(databaseURL);
 
@@ -28,12 +30,12 @@ app.use(morgan('dev'));
 require('./config/passport')(passport, TwitterStrategy);
 app.use(passport.initialize());
 
-app.get("/api/auth/twitter", passport.authenticate("twitter", {token : { secure: false }}));
+// app.get("/api/auth/twitter", passport.authenticate("twitter", {token : { secure: false }}));
 
-app.get("api//auth/twitter/callback", passport.authenticate("twitter", {
-  successRedirect: "/localhost:8000/",
-  failureRedirect: "/localhost:8000/signin"
-}));
+// app.get("api//auth/twitter/callback", passport.authenticate("twitter", {
+//   successRedirect: "/localhost:8000/",
+//   failureRedirect: "/localhost:8000/signin"
+// }));
 
 
 // app.get('/api/auth/twitter', passport.authenticate('twitter'));
