@@ -38,7 +38,7 @@
 
 <div id="row" class="row">
   <ul>
-    <li id="li_repeat" ng-repeat="startup in main.startups | filter:{'location': location} | orderBy:'name' | limitTo:main.totalDisplayed">
+    <li id="li_repeat" ng-repeat="startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed">
     <div class="col-lg-4">
       <ul id="ul_repeat">
         <li id="li_repeat"><button id="delete_button" class="close" ng-click="main.deleteStartup(startup)">&times;</button></li>

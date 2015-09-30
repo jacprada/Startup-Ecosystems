@@ -54,9 +54,9 @@ self.deleteCommunityMember = function(member){
     self.totalDisplayed += 9;
   };
 
-  // self.random = function(startup) {
-  //   return Math.random();
-  // };
+  self.random = function(startup) {
+    return Math.random();
+  };
 
   // $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
   //   console.log("Infinite")
