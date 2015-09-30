@@ -12,6 +12,12 @@ var passport          = require('passport');
 var TwitterStrategy   = require('passport-twitter').Strategy;
 var config            = require('./config/config');
 
+// Setting view folder for single index.html file
+app.set("views", "./public");
+
+// Serve all js, css, html from the public folder
+app.use(express.static(__dirname + '/public'));
+
 app
   .use('/api', expressJWT({ secret: config.secret })
   .unless({path: ['/api/auth/signup', '/api/auth/signin', '/api/auth/twitter', '/api/auth/twitter/callback']}));
@@ -19,7 +25,6 @@ app
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(express.static(__dirname + '/public'));
 
 var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/startup-ecosystems'
 mongoose.connect(databaseURL);
