@@ -14,7 +14,7 @@
 
 angular
   .module('final-project', ['angular-jwt', 'ngResource', 'ui.router'])
-  .constant('API', 'http://localhost:3000/api')
+  .constant('API', 'https://startup-ecosystems.herokuapp.com/api')
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
   })
