@@ -20,11 +20,10 @@ app.use(express.static(__dirname + '/public'));
 
 app
   .use('/api', expressJWT({ secret: config.secret })
-  .unless({path: ['/api/auth/signup', '/api/auth/signin', '/api/auth/twitter', '/api/auth/twitter/callback']}));
+  .unless({path: ['/api/auth/signup', '/api/auth/signin']}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
 
 var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/startup-ecosystems'
 mongoose.connect(databaseURL);
@@ -32,24 +31,8 @@ mongoose.connect(databaseURL);
 app.use(cors());
 app.use(morgan('dev'));
 
-require('./config/passport')(passport, TwitterStrategy);
+require('./config/passport')(passport);
 app.use(passport.initialize());
-
-// app.get("/api/auth/twitter", passport.authenticate("twitter", {token : { secure: false }}));
-
-// app.get("api//auth/twitter/callback", passport.authenticate("twitter", {
-//   successRedirect: "/localhost:8000/",
-//   failureRedirect: "/localhost:8000/signin"
-// }));
-
-
-// app.get('/api/auth/twitter', passport.authenticate('twitter'));
-
-// app.get('/api/auth/twitter/callback', passport.authenticate('twitter',{
-//   successRedirect: 'http://localhost:8000/',
-//   failureRedirect: 'http://localhost:8000/signin'
-//   })
-// )
 
 app.use(require('./controllers'));
 

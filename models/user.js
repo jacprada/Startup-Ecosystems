@@ -7,30 +7,7 @@ var UserSchema = new mongoose.Schema({
   full_name: {type: String, required: true },
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true }
-  // favouriteStartups: [{ type : mongoose.Schema.ObjectId, ref: 'Startup' }]
 });
-
-// var UserSchema = new mongoose.Schema({
-//   full_name: {type: String, required: true },
-//   email: {type: String, required: true, unique: true},
-//   password: {type: String, required: true },
-//     twitter: {
-//       id: String,
-//       token: String
-//     }
-// });
-
-// var UserSchema = mongoose.Schema({
-//   local: {
-//     full_name: String,
-//     email: String,
-//     password: String
-//   },
-//   twitter: {
-//     id: String,
-//     token: String
-//   }
-// });
 
 UserSchema.methods.encrypt = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
