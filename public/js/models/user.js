@@ -4,7 +4,7 @@ angular
 
 User.$inject = ['$resource', 'API'];
 function User($resource, API) {
-  var url = 'https://startup-ecosystems.herokuapp.com/api'
+  var url = '/api'
 
   return $resource(
     url+'/users/:id',
