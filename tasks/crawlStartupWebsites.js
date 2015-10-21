@@ -14,6 +14,7 @@ var Allstartups     = { name: "", url: "" };
 var counter     = 0;
 var totalLinks  = 0;
 var hasEmail = false;
+var indexCounter = 0;
 var hasEmailCounter = 0;
 var allCompanies, numCompanies;
 var emailValidator       = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -23,6 +24,7 @@ mongoose.connect(databaseURL);
 var checkCount = function () {
   if (hasEmail) {
     hasEmailCounter++;
+    indexCounter++;
     hasEmail = false;
   }
 };
@@ -41,7 +43,7 @@ var callbackAfterAll = function(){
 var selectScrape = function(body, response){
   console.log("Starting crawl".bold.rainbow.inverse);
   // var name =  Math.random().toString(36).substring(7);
-  var localC = c;
+  
   var $ = cheerio.load(body);
   totalLinks +=  Object.keys($('a')).length;
   async.each(Object.keys($('a')), function(key, callbackAfterEach) {
@@ -64,12 +66,12 @@ var selectScrape = function(body, response){
           } 
         }
         if (i == results.length) {
-           results.push({ 'name': localC.name , 'emails': [url] });
+           results.push({ 'name': allCompanies[indexCounter].name , 'emails': [url] });
         }
         
           console.log(url, ' is an email address'.bgYellow);
           hasEmail = hasEmail || true;
-          Startup.findOne({ _id: localC._id}, function (err, startup){
+          Startup.findOne({ _id: allCompanies[indexCounter]._id }, function (err, startup){
            startup.emails.push(url);
             startup.save(function (err){
             if (err) console.log(err);
@@ -95,7 +97,9 @@ var selectScrape = function(body, response){
  Startup.find({ location: 'London', url: { $exists: true } }, function (err,companies) {
     allCompanies = companies;
     async.each(companies, function(co, callbackAfterEach) {
-          c = co;
+          
+    
+
           if (err) console.log(err);
           if (/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(co.url)) {
           request(co.url).setMaxListeners(0).then(selectScrape, checkCount, callbackAfterEach, function () {
