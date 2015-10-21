@@ -19,8 +19,6 @@ var file = './datasets/startups.json';
 jsonfile.readFile(file, function(err, obj) {
 	if (err) console.log(err);
  
-
-
 obj.countries.forEach(function(countryElement, countryIndex) {
 		console.log('in country', counter++);
 				// asynchronously import the startups to mongodb
@@ -33,11 +31,11 @@ obj.countries.forEach(function(countryElement, countryIndex) {
 				                  var newStartup        = new Startup();
 				                  newStartup.externalId = company.externalId;
 				                  newStartup.name       = company.name;
-				                  newStartup.url        = company.url;
+				                  newStartup.url        = company.href;
 				                  newStartup.bio        = company.bio;
 				                  newStartup.twitter    = company.twitter;
 				                  newStartup.image      = company.image;
-				                  newStartup.location   = countryElement.name;
+				                  newStartup.location   = countryElement.name.replace(' ', '');
 				                 
 				                  newStartup.save(function(err) {
 				                    if (err) console.log(err, newStartup.name + " NOT saved.".red);

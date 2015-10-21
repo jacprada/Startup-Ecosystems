@@ -1,0 +1,110 @@
+var fs          = require('fs');
+var request     = require('request-promise');
+var cheerio     = require('cheerio');
+var mongoose    = require("mongoose");
+var colors      = require('colors');
+var Startup     = require("../models/startup");
+var async = require('async');
+// psuedo code
+// go to each website and find each a tag and each see if it has an email address, it does then save it to an array of emails
+// url = a.attr('href')
+var c;
+var results     = [];
+var Allstartups     = { name: "", url: "" };
+var counter     = 0;
+var totalLinks  = 0;
+var hasEmail = false;
+var hasEmailCounter = 0;
+var allCompanies, numCompanies;
+var emailValidator       = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/startup-ecosystems'
+mongoose.connect(databaseURL);
+
+var checkCount = function () {
+  if (hasEmail) {
+    hasEmailCounter++;
+    hasEmail = false;
+  }
+};
+var callbackAfterAll = function(){
+
+  console.log("For emails of links -  Emails:" + counter + " vs Links:" + totalLinks);
+  console.log('For companies having emails on page: ', hasEmailCounter, ' of ', allCompanies.length)
+    fs.writeFile('../datasets/startupEmails.json', JSON.stringify({ results }, null, 4), function(err){
+     if (err) console.log('could not writeFile');
+      console.log('BOOM.');
+    });
+};
+
+
+
+var selectScrape = function(body, response){
+  console.log("Starting crawl".bold.rainbow.inverse);
+  // var name =  Math.random().toString(36).substring(7);
+  var localC = c;
+  var $ = cheerio.load(body);
+  totalLinks +=  Object.keys($('a')).length;
+  async.each(Object.keys($('a')), function(key, callbackAfterEach) {
+    // console.log($('a')[key]);
+  if ($('a')[key].attribs) {
+    if ($('a')[key].attribs.href) {
+
+      var url = $('a')[key].attribs.href;
+    
+    if (/mailto:/.test(url) > -1) {
+      url = url.replace(/mailto:/, '');
+      url = url.replace(/\?.*/,'');
+   
+       if (emailValidator.test(url)) {
+        var i;
+        for(i; i < results.length;i++) {
+          if (results[i]['name'] == localC.name) {
+            results[i]['emails'].push(url);
+            break;
+          } 
+        }
+        if (i == results.length) {
+           results.push({ 'name': localC.name , 'emails': [url] });
+        }
+        
+          console.log(url, ' is an email address'.bgYellow);
+          hasEmail = hasEmail || true;
+          Startup.findOne({ _id: localC._id}, function (err, startup){
+           startup.emails.push(url);
+            startup.save(function (err){
+            if (err) console.log(err);
+            counter++;
+            console.log(url, ' email saved successfully'.green);
+             callbackAfterEach();
+            });
+          });
+        }
+       else {
+          // console.log('could not save ', url);
+          callbackAfterEach();
+        }
+    } else {
+      // console.log('not mailto', url, ' ', counter++);
+      callbackAfterEach();
+    }
+   }
+}
+ }); 
+};
+// RUN SCRAPE below
+ Startup.find({ location: 'London', url: { $exists: true } }, function (err,companies) {
+    allCompanies = companies;
+    async.each(companies, function(co, callbackAfterEach) {
+          c = co;
+          if (err) console.log(err);
+          if (/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(co.url)) {
+          request(co.url).setMaxListeners(0).then(selectScrape, checkCount, callbackAfterEach, function () {
+            callbackAfterEach();
+          });
+
+          } 
+          else {
+            callbackAfterEach();
+          } 
+    },callbackAfterAll);
+});

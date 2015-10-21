@@ -8,8 +8,16 @@ var StartupSchema = new mongoose.Schema({
   bio: String,
   url: String,
   twitter: String,
-  image: String
+  image: String,
+  emails:[{ type: String, 
+  				  validate: [validateEmail, 'Please fill a valid email address'],
+  				  unique: true
+  				}]
 });
 
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+}
 var Startup = mongoose.model("Startup", StartupSchema);
 module.exports = Startup;
