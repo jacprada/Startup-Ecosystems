@@ -51,7 +51,7 @@ var selectScrape = function(body, response){
                 twitter: $(el).find(".main_link span").attr("href"),
                 image: $(el).find(".main_link img").attr("data-src"),
                 location: countryElement.name
-              }
+              };
 
               if (company.bio && company.image && company.twitter !== "" && company.twitter !== "null" && company.url !== "") {
                 console.log("Correct details and accessing MongoDB".magenta);
@@ -64,7 +64,7 @@ var selectScrape = function(body, response){
                     Startup.findByIdAndUpdate(startup._id, company, {new: true}, function(err, updatedStartup){
                       if (err) console.log(newStartup.name + " not updated.".red);
                       console.log(updatedStartup.name + " was updated.".blue)
-                    })
+                    });
                   }
 
                   var newStartup        = new Startup();

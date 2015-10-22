@@ -48,8 +48,11 @@ var selectScrape = function(body) {
 
   var $ = cheerio.load(body);
   totalLinks +=  Object.keys($('a')).length;
+
+  // use closure to protect value of companies[indexCounter]
+(function($, companies, indexCounter) {
   async.each(Object.keys($('a')), function(key, callbackAfterEach) {
-    // console.log($('a')[key]);
+  
   if ($('a')[key].attribs) {
     if ($('a')[key].attribs.href) {
 
@@ -94,6 +97,7 @@ var selectScrape = function(body) {
    }
 }
  }); 
+})($, companies, indexCounter);
 };
 
 function init () {
