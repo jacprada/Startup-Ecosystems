@@ -98,10 +98,16 @@ var selectScrape = function(body) {
 
 function init () {
 
-companies = Startup.find({ location: 'London', url: { $exists: true } });
+ Startup.find({ location: 'London', url: { $exists: true } }).then(function (pulledCompanies) {
+  companies = pulledCompanies;
+  console.log(pulledCompanies);
+runScrape();
+});
 
 }
+init();
 // RUN SCRAPE below
+function runScrape () {
     async.each(companies, function(co, callbackAfterEach) {
          
          
@@ -115,4 +121,4 @@ companies = Startup.find({ location: 'London', url: { $exists: true } });
             callbackAfterEach();
           } 
     },callbackAfterAll);
-
+}
