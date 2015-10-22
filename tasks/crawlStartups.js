@@ -1,4 +1,4 @@
-var fs          = require('fs');
+var jsonfile    = require('jsonfile');
 var request     = require('request-promise');
 var cheerio     = require('cheerio');
 var mongoose    = require("mongoose");
@@ -104,8 +104,8 @@ var increaseCounter = function(){
   console.log("Counter:" + counter + " vs results:" + results.countries.length);
   
   if (counter == results.countries.length) {
-    fs.writeFile('../datasets/startupsBackup.json', JSON.stringify(results, null, 4), function(err){
+    jsonfile.writeFile('../datasets/startupsBackup.json', results, function(err){
       console.log('BOOM.');
-    })
+    });
   }
 }
