@@ -8,15 +8,17 @@ var async = require('async');
 // psuedo code
 // go to each website and find each a tag and each see if it has an email address, it does then save it to an array of emails
 // url = a.attr('href')
+// use url from body of the request for finding the object in the database.
 var c;
 var results     = [];
+var companies;
 var Allstartups     = { name: "", url: "" };
 var counter     = 0;
 var totalLinks  = 0;
 var hasEmail = false;
 var indexCounter = 0;
 var hasEmailCounter = 0;
-var allCompanies, numCompanies;
+var allCompanies = {};
 var emailValidator       = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/startup-ecosystems'
 mongoose.connect(databaseURL);
@@ -39,11 +41,11 @@ var callbackAfterAll = function(){
 };
 
 
+var selectScrape = function(body) {
 
-var selectScrape = function(body, response){
   console.log("Starting crawl".bold.rainbow.inverse);
   // var name =  Math.random().toString(36).substring(7);
-  
+
   var $ = cheerio.load(body);
   totalLinks +=  Object.keys($('a')).length;
   async.each(Object.keys($('a')), function(key, callbackAfterEach) {
@@ -60,18 +62,18 @@ var selectScrape = function(body, response){
        if (emailValidator.test(url)) {
         var i;
         for(i; i < results.length;i++) {
-          if (results[i]['name'] == localC.name) {
+          if (results[i]['name'] == companies[indexCounter].name) {
             results[i]['emails'].push(url);
             break;
           } 
         }
         if (i == results.length) {
-           results.push({ 'name': allCompanies[indexCounter].name , 'emails': [url] });
+           results.push({ 'name': companies[indexCounter].name , 'emails': [url] });
         }
         
           console.log(url, ' is an email address'.bgYellow);
           hasEmail = hasEmail || true;
-          Startup.findOne({ _id: allCompanies[indexCounter]._id }, function (err, startup){
+          Startup.findOne({ _id: companies[indexCounter]._id }, function (err, startup){
            startup.emails.push(url);
             startup.save(function (err){
             if (err) console.log(err);
@@ -93,14 +95,16 @@ var selectScrape = function(body, response){
 }
  }); 
 };
-// RUN SCRAPE below
- Startup.find({ location: 'London', url: { $exists: true } }, function (err,companies) {
-    allCompanies = companies;
-    async.each(companies, function(co, callbackAfterEach) {
-          
-    
 
-          if (err) console.log(err);
+function init () {
+
+companies = Startup.find({ location: 'London', url: { $exists: true } });
+
+}
+// RUN SCRAPE below
+    async.each(companies, function(co, callbackAfterEach) {
+         
+         
           if (/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(co.url)) {
           request(co.url).setMaxListeners(0).then(selectScrape, checkCount, callbackAfterEach, function () {
             callbackAfterEach();
@@ -111,4 +115,4 @@ var selectScrape = function(body, response){
             callbackAfterEach();
           } 
     },callbackAfterAll);
-});
+
