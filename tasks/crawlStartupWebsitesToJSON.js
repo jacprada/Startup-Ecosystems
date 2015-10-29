@@ -42,7 +42,7 @@ var callbackAfterAll = function(){
   console.log("For emails of links -  Emails:" + counter + " vs Links:" + totalLinks);
   console.log('For companies having emails on page: ', hasEmailCounter, ' of ', companies.length)
   jsonfile.writeFile(file, results, function (err) {
-  if (err) console.error(err)
+  if (err) console.error(err);
   console.log('written');
   });
 };
@@ -57,9 +57,10 @@ var selectScrape = function(body) {
   totalLinks +=  Object.keys($('a')).length;
 
   // use closure to protect value of companies[indexCounter]
+ 
   Object.keys($('a')).forEach(function (key) { 
-(function($, companies, indexCounter) {
 
+ (function($, companies, indexCounter) {
     var value = $('a')[key];
     if ($('a')[key].attribs) {
       if ($('a')[key].attribs.href) {
@@ -81,12 +82,11 @@ var selectScrape = function(body) {
           console.log(url, ' is an email address'.bgYellow);
           counter++;
           }
-         
        } 
       } 
     }
-  })($, companies, indexCounter);
-});
+    })($, companies, indexCounter);
+  });
 
 };
 
@@ -102,16 +102,15 @@ runScrape();
 init();
 // RUN SCRAPE below
 function runScrape () {
-    async.each(companies, function(co, callbackAfterEach) {
+    companies.forEach(function(co) {
+        (function (co) {
           indexCounter++;
-          if (/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(co.url)) {
-          request(co.url).setMaxListeners(0).then(selectScrape, checkCount, callbackAfterEach, function () {
-            callbackAfterEach();
-          });
 
-          } 
+          if (/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(co.url)) {
+          request(co.url).setMaxListeners(0).then(selectScrape, checkCount);
+        }
           else {
-            callbackAfterEach();
           } 
+        })(co);
     });
 }
