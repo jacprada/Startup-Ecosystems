@@ -37,3 +37,4 @@ node app.js
 <br/>
 Getting Startup emails (emails are being retrieved, but not properly inserted in database)<br/>
 Scaping other sites for more data
+Implementing search in Angular app
