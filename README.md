@@ -13,11 +13,13 @@ npm install
 bower install
 </code>
 </p>
+
 <p>
 Fill database with startups:
 <code>
 node tasks/importStartups.js
-<code>
+</code>
+
 </p>
 <p>
 Fill database with members (see full docs here: https://docs.mongodb.org/getting-started/shell/import-data/):
