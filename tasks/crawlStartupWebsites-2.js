@@ -114,11 +114,21 @@ async.each(Object.keys(results), function(resp, callbackAfter) {
             if (/mailto:/.test(url) > -1) {
               url = url.replace(/mailto:/, '');
               url = url.replace(/\?.*/,'');
-           
+            console.log(resp, 'startup url inside async');
                if (emailValidator.test(url)) {
                   if (Object.prototype.toString.call(results[resp]) === '[object Array]') {
-                      results[resp].push(url);
-                    console.log('added email', results[resp]);
+                    results[resp].push(url);
+                    Startup.find({ url: resp }, function (err, startup) {
+                      if (err) console.log('could not get startup', url);
+                      if (!startup) console.log('no startup found and url', resp);
+                      if (!startup.emails) startup.emails = [];
+                      startup.emails.push(url);
+                      startup.save(function (err) {
+                        if (err) console.log('could not save');
+                        console.log('added email', url);
+                      });
+                    });
+            
                     callback();
                   } else {
                     results[resp] = [];

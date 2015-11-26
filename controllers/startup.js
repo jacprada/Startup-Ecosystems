@@ -3,7 +3,13 @@ var router  = express.Router();
 
 var Startup = require('../models/startup');
 
-
+// SEARCH
+router.get('/search/:city/:query', function (req,res) {
+   Startup.find( { location: req.params.city, $text: { $search: req.params.query } }, function (err, output) {
+    if (err) return res.status(404).json({message: 'Could not find any startups'})
+    return res.status(200).send(output);
+ });
+});
 // INDEX 
 router.get('/', function(req, res){
   Startup.find()

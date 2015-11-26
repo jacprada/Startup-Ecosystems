@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var textSearch = require("mongoose-text-search");
 
 var StartupSchema = new mongoose.Schema({
   id: Number,
@@ -14,6 +15,7 @@ var StartupSchema = new mongoose.Schema({
   				  unique: true
   				}]
 });
+
 
 function validateEmail(email) {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;

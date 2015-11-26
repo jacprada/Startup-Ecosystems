@@ -13,7 +13,8 @@ function Startup($resource, API) {
       'save':      { method: 'POST' },
       'query':     { method: 'GET', isArray: true},
       'remove':    { method: 'DELETE' },
-      'delete':    { method: 'DELETE' }
+      'delete':    { method: 'DELETE' },
+      'search': { method: 'GET', url: url + '/startups/search/:city/:query', isArray: true}
       // "favourite": { 
       //   url: url+"/users/:id/favourite/"+id
       //   method: "POST"

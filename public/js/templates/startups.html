@@ -1,44 +1,51 @@
 <div class="container-fluid" ng-controller="MainController as main">
+  <div>
 
+  </div>
   <div id="search_bar" class="container-fluid text-center">
+  <div>
+    <input type="text" id="query-search" ng-model="query">
+    <button style="display:inline-block" ng-click="main.searchStartups(query)">Search</button>
+    </div>
     <label id="search_label">Look for companies based in</label>
     <select id="search_select" ng-model="location">
       <option value="" selected>All Startup Hubs</option>
-      <option>Atlanta </option>
-      <option>Austin </option>
-      <option>Bangalore </option>
-      <option>Berlin </option>
-      <option>Boston </option>
-      <option>Boulder </option>
-      <option>Chicago </option>
-      <option>Hong Kong </option> 
-      <option>Houston </option>
-      <option>London </option>
-      <option>Los Angeles </option>
-      <option>Melbourne </option>
-      <option>Montréal </option>
-      <option>Moscow </option>
-      <option>Munich </option>
-      <option>New Delhi </option>
-      <option>New York </option>
-      <option>Paris </option>
-      <option>San Francisco </option>
-      <option>Santiago </option>
-      <option>Sao Paulo </option>
-      <option>Seattle </option>
-      <option>Singapore </option>
-      <option>Stockholm </option>
-      <option>Sydney </option>
-      <option>Tel Aviv </option>
-      <option>Toronto </option>
-      <option>Vancouver </option>
-      <option>Washington DC </option>
+      <option>Atlanta</option>
+      <option>Austin</option>
+      <option>Bangalore</option>
+      <option>Berlin</option>
+      <option>Boston</option>
+      <option>Boulder</option>
+      <option>Chicago</option>
+      <option>Hong Kong</option> 
+      <option>Houston</option>
+      <option>London</option>
+      <option>Los Angeles</option>
+      <option>Melbourne</option>
+      <option>Montréal</option>
+      <option>Moscow</option>
+      <option>Munich</option>
+      <option>New Delhi</option>
+      <option>New York</option>
+      <option>Paris</option>
+      <option>San Francisco</option>
+      <option>Santiago</option>
+      <option>Sao Paulo</option>
+      <option>Seattle</option>
+      <option>Singapore</option>
+      <option>Stockholm</option>
+      <option>Sydney</option>
+      <option>Tel Aviv</option>
+      <option>Toronto</option>
+      <option>Vancouver</option>
+      <option>Washington DC</option>
     </select>
   </div>
 
 <div id="row" class="row">
   <ul>
-    <li id="li_repeat" ng-repeat="startup in main.startups | filter:{'location': location} | orderBy:main.random | limitTo:main.totalDisplayed">
+   <!-- other options orderBy:main.random -->
+    <li id="li_repeat" ng-repeat="startup in main.startups | filter:{'location': location} | limitTo:main.totalDisplayed">
     <div class="col-lg-4">
       <ul id="ul_repeat">
         <li id="li_repeat"><button id="delete_button" class="close" ng-click="main.deleteStartup(startup)">&times;</button></li>
