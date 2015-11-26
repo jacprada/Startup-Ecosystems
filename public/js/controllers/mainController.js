@@ -15,11 +15,11 @@ function MainController($resource, $filter, TokenService, Startup, Community, $w
   //   self.numberOfMembers = response.length;
   // });
 self.searchStartups = function () {
-  Startup.search({ city: $scope.location, query: $scope.query }, function (response) {
+  Startup.search({ city: $scope.location || 'all', query: $scope.query }, function (response) {
     self.startups = response;
     console.log(self.startups);
     // .substr(0,$scope.location.length-1)
-    self.totalDisplayed = 9;
+    self.totalDisplayed = 50;
   });
 }
 self.deleteCommunityMember = function(member){
