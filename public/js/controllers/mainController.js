@@ -14,15 +14,23 @@ function MainController($resource, $filter, TokenService, Startup, Community, $w
   //   console.log(response.length)
   //   self.numberOfMembers = response.length;
   // });
-
+self.searchStartups = function () {
+  Startup.search({ city: $scope.location || 'all', query: $scope.query }, function (response) {
+    self.startups = response;
+    console.log(self.startups);
+    // .substr(0,$scope.location.length-1)
+    self.totalDisplayed = 50;
+  });
+}
 self.deleteCommunityMember = function(member){
   Community.delete({id: member._id});
   var index = self.communityMembers.indexOf(member);
   self.communityMembers.splice(index, 1);
-}
+  }
 
   self.startup  = {};
-  self.startups = Startup.query();
+  self.startups = Startup.query(function (startups) { console.log(startups)});
+
 
   self.deleteStartup = function(startup){
     Startup.delete({id: startup._id});

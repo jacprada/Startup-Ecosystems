@@ -75,7 +75,6 @@ body {
 }
 
 #form_input {
-  max-width: 300px;
   margin: 0 auto 10px auto;
   background-color: #FFFFFF;
   border-radius: 3px;
@@ -133,10 +132,12 @@ body {
 
 
 /*STARTUPS*/
-
+/*#search-input {
+  width:60%;
+}*/
 #search_bar {
-  background-color: #19763E;
   max-width: 300px;
+  background-color: #19763E;
   padding: 10px;
   border-radius: 3px;
   margin: 20px auto;

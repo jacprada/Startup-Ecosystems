@@ -4,7 +4,7 @@ angular
 
 Community.$inject = ['$resource', 'API'];
 function Community($resource, API) {
-  var url = 'https://startup-ecosystems.herokuapp.com/api'
+  var url = '/api'
 
   return $resource(
     url+'/community/:id',

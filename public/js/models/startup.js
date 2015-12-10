@@ -4,7 +4,7 @@ angular
 
 Startup.$inject = ['$resource', 'API'];
 function Startup($resource, API) {
-  var url = 'https://startup-ecosystems.herokuapp.com/api'
+  var url = '/api'
 
   return $resource(
     url+'/startups/:id',
@@ -13,7 +13,8 @@ function Startup($resource, API) {
       'save':      { method: 'POST' },
       'query':     { method: 'GET', isArray: true},
       'remove':    { method: 'DELETE' },
-      'delete':    { method: 'DELETE' }
+      'delete':    { method: 'DELETE' },
+      'search': { method: 'GET', url: url + '/startups/search/:query/:city', isArray: true}
       // "favourite": { 
       //   url: url+"/users/:id/favourite/"+id
       //   method: "POST"
